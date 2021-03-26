@@ -55,7 +55,11 @@ class Tennis: ScoreBoard {
     
 }
 class Soccer: ScoreBoard {
-    
+    //정의하려는 메소드가 부모 클래스에 있다면 override가 자동 입력된다.
+    //override 새로 만든다.
+    override func result() -> String {
+        return "\(homeScore)" + " - " + "\(awayScore)"
+    }
 }
 class BaseBall: ScoreBoard{
     
@@ -69,4 +73,13 @@ var soccer = Soccer()
 soccer.homeScore = 4
 soccer.awayScore = 3
 soccer.result()
+
+var soccer2 = soccer    //참조가 된다. =>
+soccer2.homeScore = 10
+soccer.homeScore
+
+// override
+
+// 참조  같은 주소의 값을 바라봄.
+// 값 복사
 
