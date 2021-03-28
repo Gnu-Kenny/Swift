@@ -56,3 +56,50 @@ print("six times three is \(threeTimesTable[6])")
 ---
 
 Dictionary Example
+
+```swift
+var numberOfLegs = ["spider": 8, "ant": 6, "cat": 4]
+numberOfLegs["bird"] = 2
+```
+
+<br>
+
+`numberOfLegs`값은 타입 추론에 의해 `[String: Int]`형을 갖습니다. `numberOfLegs["bird"] = 2`는 사전형 변수 `numberOfLegs`에 key로 bird를 그 값은 2를 넣으라는 서브스크립트 문법입니다.
+
+> NOTE  
+> 사전의 반환 값은 옵셔널입니다. 그 이유는 사전에 특정 키 값이 없는 경우가 있을 수 있고, 특정 키 값을 nil로 설정할 수 있기 때문입니다.
+
+<br>
+
+## 서브스크립트 옵션 (Subscript Options)
+
+- 서브스크립트는 입력 인자의 숫자에 제한이 없고, 입력 인자의 타입과 반환 타입의 제한도 없습니다.
+- in-out 인자(in-out parameter)나 기본 인자 값(default parameter value)을 제공할 수는 없습니다.
+- 서브스크립트는 오버로딩도 허용합니다. 그래서 인자형, 반환형에 따라 원하는 수 만큼의 서브스크립트를 선언할 수 있습니다.
+
+```swift
+struct Matrix {
+    let rows: Int, columns: Int
+    var grid: [Double]
+    init(rows: Int, columns: Int) {
+        self.rows = rows
+        self.columns = columns
+        grid = Array(repeating: 0.0, count: rows * columns)
+    }
+    func indexIsValid(row: Int, column: Int) -> Bool {
+        return row >= 0 && row < rows && column >= 0 && column < columns
+    }
+    subscript(row: Int, column: Int) -> Double {
+        get {
+            assert(indexIsValid(row: row, column: column), "Index out of range")
+            return grid[(row * columns) + column]
+        }
+        set {
+            assert(indexIsValid(row: row, column: column), "Index out of range")
+            grid[(row * columns) + column] = newValue
+        }
+    }
+}
+```
+
+위 코드에서는 subscript(row: Int, column: Int) -> Double코드와 같이 row, column 2개의 인자를 받고, Double를 반환하는 서브스크립트를 선언했습니다. get, set 각각에 indexIsValid메소드를 사용해서 유효한 인덱스가 아닌경우 프로그램이 바로 종료 되도록 assert를 호출했습니다. 선언한 서브스크립트 문법을 이용해 var matrix = Matrix(rows: 2, columns: 2) 2 x 2 행렬을 선언합니다.
