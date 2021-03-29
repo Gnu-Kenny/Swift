@@ -74,8 +74,10 @@ numberOfLegs["bird"] = 2
 ## 서브스크립트 옵션 (Subscript Options)
 
 - 서브스크립트는 입력 인자의 숫자에 제한이 없고, 입력 인자의 타입과 반환 타입의 제한도 없습니다.
-- in-out 인자(in-out parameter)나 기본 인자 값(default parameter value)을 제공할 수는 없습니다.
+- in-out 인자(in-out parameter)나 기본 인ß자 값(default parameter value)을 제공할 수는 없습니다.
 - 서브스크립트는 오버로딩도 허용합니다. 그래서 인자형, 반환형에 따라 원하는 수 만큼의 서브스크립트를 선언할 수 있습니다.
+
+<br>
 
 ```swift
 struct Matrix {
@@ -102,4 +104,19 @@ struct Matrix {
 }
 ```
 
-위 코드에서는 subscript(row: Int, column: Int) -> Double코드와 같이 row, column 2개의 인자를 받고, Double를 반환하는 서브스크립트를 선언했습니다. get, set 각각에 indexIsValid메소드를 사용해서 유효한 인덱스가 아닌경우 프로그램이 바로 종료 되도록 assert를 호출했습니다. 선언한 서브스크립트 문법을 이용해 var matrix = Matrix(rows: 2, columns: 2) 2 x 2 행렬을 선언합니다.
+- 위 코드에서는 subscript(row: Int, column: Int) -> Double코드와 같이 row, column 2개의 인자를 받고, Double를 반환하는 서브스크립트를 선언했습니다.
+- get, set 각각에 indexIsValid메소드를 사용해서 유효한 인덱스가 아닌경우 프로그램이 바로 종료 되도록 assert를 호출했습니다.
+- 선언한 서브스크립트 문법을 이용해 var matrix = Matrix(rows: 2, columns: 2) 2 x 2 행렬을 선언합니다.
+
+<br>
+
+```swift
+matrix[0, 1] = 1.5
+matrix[1, 0] = 3.2
+```
+
+값을 넣은 결과 행렬은 다음과 같은 모습이 됩니다.
+
+<br>
+
+![Subscripts_Matrix](https://gblobscdn.gitbook.com/assets%2F-LKLx6PA5iF3Uq2IzQsf%2F-LKMNVThMs-6OciUjtgW%2F-LKMNoEZxJZygWqCLkZp%2FBE27D61E-5730-4155-B132-ED1A14038787.png?alt=media&token=52c94ff7-b995-4a97-b1bf-3415e91b7ada)
