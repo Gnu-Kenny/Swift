@@ -5,7 +5,7 @@
 
 <br>
 
-에러는 Error 프로토콜을 상속한 어떤 타입으로 표현합니다.
+에러는 Error 프로토콜을 '채택한 (adopt)' 어떤 타입으로 표현합니다.
 
 ```swift
 enum PrinterError: Error {
